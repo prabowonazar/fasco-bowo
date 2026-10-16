@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#20295f" />
+      <stop offset="100%" stop-color="#151d3e" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#2d93e8" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)" />
+  <circle cx="256" cy="256" r="170" fill="#ffffff" />
+  <g transform="translate(140, 140) scale(1.5)">
+    <path d="M76.5 12C76.5 12 118 57.6 118 88C118 118.4 99.4 143 76.5 143C53.6 143 35 118.4 35 88C35 57.6 76.5 12 76.5 12Z" fill="url(#blueGrad)"/>
+    <path d="M76.5 35C76.5 35 102 70 102 92C102 114 88.5 130 76.5 130C64.5 130 51 114 51 92C51 70 76.5 35 76.5 35Z" fill="#20295f"/>
+  </g>
+  <text x="256" y="450" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="34" font-weight="900" fill="#38bdf8" text-anchor="middle" letter-spacing="2">FASCO</text>
+</svg>
