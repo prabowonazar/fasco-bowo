@@ -3,7 +3,7 @@ import App from './App.tsx';
 import './index.css';
 
 // Register Service Worker for PWA & PWABuilder compatibility
-if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'test') {
+if ('serviceWorker' in navigator && (typeof process === 'undefined' || process.env?.NODE_ENV !== 'test')) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/sw.js')

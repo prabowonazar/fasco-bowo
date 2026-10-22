@@ -21,12 +21,12 @@ import { Submission, UserRoleId } from '../types';
 import { SAMPLE_ITEMS } from '../utils/calculations';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBr1nc6cFgidMogZt9baWHIanwzqnbb6RA",
-  authDomain: "fasco-pegajuan.firebaseapp.com",
-  projectId: "fasco-pegajuan",
-  storageBucket: "fasco-pegajuan.firebasestorage.app",
-  messagingSenderId: "589670448126",
-  appId: "1:589670448126:web:2a4872813aa37f1af09eaf",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyBr1nc6cFgidMogZt9baWHIanwzqnbb6RA",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "fasco-pegajuan.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "fasco-pegajuan",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "fasco-pegajuan.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "589670448126",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:589670448126:web:2a4872813aa37f1af09eaf",
 };
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
