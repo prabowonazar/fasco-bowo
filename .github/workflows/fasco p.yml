@@ -36,11 +36,11 @@ jobs:
 
       - name: 5. Setup Capacitor Android
         run: |
-          npm install --no-save @capacitor/core@latest @capacitor/cli@latest @capacitor/android@latest
+          npm install --no-save --legacy-peer-deps @capacitor/core@latest @capacitor/cli@latest @capacitor/android@latest
           npx cap init "Fasco Sanwira Mobile" "com.fascosanwira.mobile" --web-dir dist
           npx cap add android
 
-      - name: 6. Inject Logo & Sync
+      - name: 6. Inject Brand Icons to Android App
         run: |
           node -e "
           const fs = require('fs');
@@ -49,25 +49,38 @@ jobs:
           if (fs.existsSync(iconSrc)) {
             const iconData = fs.readFileSync(iconSrc);
             const resDir = path.join('android', 'app', 'src', 'main', 'res');
-            const folders = ['mipmap-mdpi','mipmap-hdpi','mipmap-xhdpi','mipmap-xxhdpi','mipmap-xxxhdpi'];
-            folders.forEach(f => {
-              const target = path.join(resDir, f);
-              if (!fs.existsSync(target)) fs.mkdirSync(target, { recursive: true });
-              fs.writeFileSync(path.join(target, 'ic_launcher.png'), iconData);
-              fs.writeFileSync(path.join(target, 'ic_launcher_round.png'), iconData);
+            const mipmapFolders = [
+              'mipmap-mdpi',
+              'mipmap-hdpi',
+              'mipmap-xhdpi',
+              'mipmap-xxhdpi',
+              'mipmap-xxxhdpi'
+            ];
+            mipmapFolders.forEach(folder => {
+              const targetFolder = path.join(resDir, folder);
+              if (!fs.existsSync(targetFolder)) {
+                fs.mkdirSync(targetFolder, { recursive: true });
+              }
+              fs.writeFileSync(path.join(targetFolder, 'ic_launcher.png'), iconData);
+              fs.writeFileSync(path.join(targetFolder, 'ic_launcher_round.png'), iconData);
+              fs.writeFileSync(path.join(targetFolder, 'ic_launcher_foreground.png'), iconData);
             });
+            console.log('App icons injected into Android project successfully');
           }
           "
+
+      - name: 7. Sync Assets to Android
+        run: |
           npx cap sync android
 
-      - name: 7. Compile Android APK via Gradle
+      - name: 8. Accept Android Licenses & Build APK
         working-directory: android
         run: |
           chmod +x gradlew
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           ./gradlew assembleDebug --no-daemon
 
-      - name: 8. Upload File APK
+      - name: 9. Upload APK as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Fasco-Sanwira-Mobile-APK
