@@ -11,15 +11,17 @@ jobs:
   build-apk:
     name: Build Android APK
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: 1. Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 2. Setup Node.js
+      - name: 2. Setup Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
       - name: 3. Setup Java JDK 17
         uses: actions/setup-java@v4
@@ -27,21 +29,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 4. Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: 5. Install Dependencies & Build Web
+      - name: 4. Build Web App (Vite + Tailwind)
         run: |
           npm install --legacy-peer-deps
           npm run build
 
-      - name: 6. Setup Capacitor Android
+      - name: 5. Setup Capacitor Android
         run: |
           npm install --no-save @capacitor/core@latest @capacitor/cli@latest @capacitor/android@latest
           npx cap init "Fasco Sanwira Mobile" "com.fascosanwira.mobile" --web-dir dist
           npx cap add android
 
-      - name: 7. Inject Logo & Sync
+      - name: 6. Inject Logo & Sync
         run: |
           node -e "
           const fs = require('fs');
@@ -61,13 +60,14 @@ jobs:
           "
           npx cap sync android
 
-      - name: 8. Compile Android APK
+      - name: 7. Compile Android APK via Gradle
         working-directory: android
         run: |
           chmod +x gradlew
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           ./gradlew assembleDebug --no-daemon
 
-      - name: 9. Upload File APK
+      - name: 8. Upload File APK
         uses: actions/upload-artifact@v4
         with:
           name: Fasco-Sanwira-Mobile-APK
