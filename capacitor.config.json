@@ -1,0 +1,10 @@
+{
+  "appId": "com.fascosanwira.mobile",
+  "appName": "Fasco Sanwira Mobile",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  }
+}

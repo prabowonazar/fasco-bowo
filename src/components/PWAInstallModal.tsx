@@ -181,69 +181,66 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
           ) : (
             /* TAB 2: CARA MENDAPATKAN FILE .APK */
             <div className="space-y-3 text-xs">
-              <div className="bg-blue-50 dark:bg-blue-950/40 p-3 rounded-xl border border-blue-200 dark:border-blue-900/60 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-blue-900 dark:text-blue-200">
-                  <Sparkles className="w-4 h-4 text-sky-500" />
-                  <span>Bisa langsung dibuatkan .APK resmi!</span>
+              {/* Option A: Build via GitHub Actions (Official & Direct) */}
+              <div className="bg-gradient-to-r from-slate-900 to-[#18204b] text-white p-3.5 rounded-2xl shadow-md border border-slate-700/60 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 font-bold text-xs text-sky-300">
+                    <Sparkles className="w-4 h-4 text-sky-400" />
+                    <span>Opsi 1: Build Otomatis di GitHub</span>
+                  </div>
+                  <span className="text-[9px] bg-emerald-500 text-slate-950 font-black px-1.5 py-0.5 rounded-full">
+                    Siap Pakai
+                  </span>
                 </div>
-                <p className="text-[11px] text-blue-800/90 dark:text-blue-300 leading-relaxed">
-                  Karena web ini sudah memenuhi 100% standar PWA Google, Anda dapat mengunduh file <strong>.APK Android</strong> dalam 1 menit via <strong>PWABuilder</strong> (Layanan open-source resmi Microsoft & Google).
+                <p className="text-[11px] text-slate-300 leading-relaxed">
+                  Workflow <code className="bg-black/40 px-1 py-0.5 rounded text-sky-300 font-mono text-[10px]">.github/workflows/build-apk.yml</code> sudah aktif di repositori GitHub Anda.
                 </p>
+                <div className="bg-black/30 p-2.5 rounded-xl text-[11px] space-y-1.5 text-slate-300 border border-white/5">
+                  <div className="flex items-start gap-1.5">
+                    <span className="w-4 h-4 rounded-full bg-sky-500 text-slate-950 flex items-center justify-center font-bold text-[9px] flex-shrink-0 mt-0.5">1</span>
+                    <span>Buka tab <strong>Actions</strong> di GitHub repository Anda.</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <span className="w-4 h-4 rounded-full bg-sky-500 text-slate-950 flex items-center justify-center font-bold text-[9px] flex-shrink-0 mt-0.5">2</span>
+                    <span>Pilih workflow <strong>"Build Android APK"</strong> &rarr; klik tombol <strong>"Run workflow"</strong>.</span>
+                  </div>
+                  <div className="flex items-start gap-1.5">
+                    <span className="w-4 h-4 rounded-full bg-sky-500 text-slate-950 flex items-center justify-center font-bold text-[9px] flex-shrink-0 mt-0.5">3</span>
+                    <span>Tunggu proses selesai (~2 menit), lalu unduh file <strong>Fasco-Sanwira-Mobile-APK</strong> di bagian <strong>Artifacts</strong>.</span>
+                  </div>
+                </div>
+
+                <a
+                  href="https://github.com/prabowonazar/fasco-bowo/actions"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full py-2.5 px-3 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition"
+                >
+                  <span>Buka GitHub Actions Repositori</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
-              {/* Step-by-step box */}
-              <div className="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2.5">
-                <span className="font-bold text-[11px] uppercase tracking-wider text-slate-400 block">
-                  3 Langkah Cepat Download .APK:
-                </span>
-
-                <div className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#20295f] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0 mt-0.5">
-                    1
-                  </div>
-                  <div>
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">Buka PWABuilder:</span>
-                    <p className="text-[11px] text-slate-500">
-                      Klik tombol biru di bawah. URL aplikasi Fasco sudah otomatis terisi.
-                    </p>
-                  </div>
+              {/* Option B: PWABuilder Alternative */}
+              <div className="bg-slate-50 dark:bg-slate-800/60 p-3 rounded-xl border border-slate-200 dark:border-slate-700 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-[11px] text-slate-700 dark:text-slate-300">
+                    Opsi 2: Konversi Online (PWABuilder)
+                  </span>
                 </div>
-
-                <div className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#20295f] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0 mt-0.5">
-                    2
-                  </div>
-                  <div>
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">Pilih "Package for Stores" &rarr; "Android":</span>
-                    <p className="text-[11px] text-slate-500">
-                      Pilih format APK untuk pengujian / distribusi internal.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-[#20295f] text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0 mt-0.5">
-                    3
-                  </div>
-                  <div>
-                    <span className="font-semibold text-slate-800 dark:text-slate-200">Unduh & Pasang .APK:</span>
-                    <p className="text-[11px] text-slate-500">
-                      Kirim file .apk ke HP staf / tim dan buka untuk menginstal.
-                    </p>
-                  </div>
-                </div>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  Konversi web ke file APK via layanan online Microsoft PWABuilder:
+                </p>
+                <a
+                  href={pwaBuilderUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full py-2.5 px-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 text-slate-800 dark:text-slate-200 rounded-xl font-semibold text-xs flex items-center justify-center gap-1.5 active:scale-98 transition"
+                >
+                  <span>Buka PWABuilder</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
-
-              {/* Action Button: Open PWABuilder */}
-              <a
-                href={pwaBuilderUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20 active:scale-98 transition text-center"
-              >
-                <span>Buka PWABuilder untuk Unduh .APK</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
 
               {/* Copy URL Button */}
               <div className="flex items-center gap-2 pt-1">

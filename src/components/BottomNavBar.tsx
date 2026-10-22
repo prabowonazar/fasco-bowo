@@ -61,21 +61,39 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({
           <span className="text-[10px] mt-1">Review</span>
         </button>
 
-        {/* Tab 3: Buat Baru (Pengajuan) */}
+        {/* Tab 3: Buat Baru (Pengajuan / Logo Tengah) */}
         {canCreate ? (
           <button
             onClick={() => { triggerHaptic(15); onTabChange('buat'); }}
-            className="flex flex-col items-center justify-center -mt-4 px-2 active:scale-95 transition"
+            className="flex flex-col items-center justify-center -mt-5 px-2 active:scale-95 transition group"
             aria-label="Buat Pengajuan Baru"
           >
-            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#20295f] to-[#2d93e8] text-white flex items-center justify-center shadow-lg shadow-blue-900/30 ring-4 ring-white dark:ring-slate-900">
-              <PlusCircle className="w-6 h-6 stroke-[2.2]" />
+            <div className={`w-[50px] h-[50px] rounded-full bg-[#20295f] p-0.5 text-white flex items-center justify-center shadow-xl shadow-blue-900/40 ring-4 transition relative ${
+              currentTab === 'buat'
+                ? 'ring-sky-400 dark:ring-sky-500 scale-105'
+                : 'ring-white dark:ring-slate-900'
+            }`}>
+              <img src="/fasco-logo.png" alt="Pengajuan" className="w-full h-full object-cover rounded-full" />
+              <span className="absolute -bottom-0.5 -right-0.5 w-[18px] h-[18px] bg-sky-500 rounded-full flex items-center justify-center text-white ring-2 ring-white dark:ring-slate-900 shadow-xs">
+                <PlusCircle className="w-3.5 h-3.5 stroke-[2.5]" />
+              </span>
             </div>
-            <span className="text-[10px] mt-0.5 font-bold text-slate-700 dark:text-slate-200">
+            <span className={`text-[10px] mt-0.5 font-bold transition ${
+              currentTab === 'buat' ? 'text-[#20295f] dark:text-sky-400' : 'text-slate-700 dark:text-slate-200'
+            }`}>
               Pengajuan
             </span>
           </button>
-        ) : null}
+        ) : (
+          <div className="flex flex-col items-center justify-center -mt-4 px-2">
+            <div className="w-11 h-11 rounded-full bg-[#20295f] p-0.5 flex items-center justify-center shadow-md ring-4 ring-white dark:ring-slate-900">
+              <img src="/fasco-logo.png" alt="Fasco Logo" className="w-full h-full object-cover rounded-full" />
+            </div>
+            <span className="text-[10px] mt-0.5 font-bold text-slate-500 dark:text-slate-400">
+              Fasco
+            </span>
+          </div>
+        )}
 
         {/* Tab 4: Profil */}
         <button

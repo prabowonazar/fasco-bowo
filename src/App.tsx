@@ -65,7 +65,6 @@ import { ItemSheetEditor } from './components/ItemSheetEditor';
 import { SpreadsheetView } from './components/SpreadsheetView';
 import { ApprovalStepper } from './components/ApprovalStepper';
 import { PWAInstallModal } from './components/PWAInstallModal';
-import { InstallAppBanner } from './components/InstallAppBanner';
 import { OfflineBanner } from './components/OfflineBanner';
 import { LoginModal } from './components/LoginModal';
 import { PrintDocument } from './components/PrintDocument';
@@ -865,9 +864,6 @@ export default function App() {
         ) : activeTab === 'beranda' ? (
           /* VIEW 2: TAB BERANDA (FEED & METRICS) */
           <div className="space-y-4">
-            {/* Install Banner */}
-            <InstallAppBanner onOpenModal={() => setIsInstallModalOpen(true)} />
-
             {/* Quick Metrics Carousel */}
             <div className="grid grid-cols-4 gap-2 text-center">
               <button
